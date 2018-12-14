@@ -1,11 +1,5 @@
-/* View da lista de baralhos (View padrão)*/
-
-//exibe o título de cada baralho
-//exibe o número de cartões em cada baralho
-
 import React, { Component } from "react";
 import {
-  AsyncStorage,
   Platform,
   StyleSheet,
   Text,

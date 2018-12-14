@@ -1,16 +1,10 @@
-// Perceba que cada baralho cria uma nova chave no objeto.
-// Cada baralho possui um title e uma chave questions.
-// title é o título para o baralho em específico e questions
-// é uma array de perguntas e respostas para aquele baralho.
 import { AsyncStorage } from "react-native";
 import { Notifications, Permissions } from "expo";
 
 const NOT_KEY = "Flash:Notification";
 
 export async function getDecks() {
-  //retorna todos os baralhos com seus títulos, perguntas, e respostas.
   let decks = [];
-  //  await AsyncStorage.setItem("DECKS", JSON.stringify([struct.reactive]));
   await AsyncStorage.getItem("DECKS").then(
     response => (decks = JSON.parse(response))
   );
@@ -18,19 +12,15 @@ export async function getDecks() {
 }
 
 export async function getDeck(id) {
-  //dado um único argumento id, ele retorna o baralho associado àquele id.
   let deck = [];
-  //await AsyncStorage.setItem("DECKS", JSON.stringify([struct.reactive]));
   await AsyncStorage.getItem("DECKS").then(
     response => (deck = JSON.parse(response).filter(res => res.title === id)[0])
   );
-  return await deck;
+  return deck;
 }
 
 export async function saveDeckTitle(newDeck, edit = false) {
-  //dado um único argumento title, ele adiciona-o aos baralhos.
   if (edit) {
-    //Get deck for edit
     let deckTemp = [];
     let deckQuestions = [];
     await AsyncStorage.getItem("DECKS").then(
@@ -44,21 +34,18 @@ export async function saveDeckTitle(newDeck, edit = false) {
         )[0].questions)
     );
 
-    //Prepare data
     deckQuestions = await [...deckQuestions, newDeck.questions[0]];
     const newDeckAdd = {
       title: newDeck.title,
       questions: deckQuestions
     };
 
-    //Delete deck
     let index = deckTemp.indexOf(
       deckTemp.filter(dk => dk.title === newDeck.title)[0]
     );
     await deckTemp.splice(index, 1);
     await AsyncStorage.setItem("DECKS", JSON.stringify(deckTemp));
 
-    //Insert New Deck
     await AsyncStorage.getItem("DECKS").then(deck => {
       if (deck === null) {
         return AsyncStorage.setItem("DECKS", JSON.stringify([newDeckAdd]));
@@ -87,21 +74,19 @@ export function clearLocalNotifications() {
   );
 }
 
-function createNotification() {
-  return {
-    title: "Flash Cards",
-    body: "You have not even studied today.",
-    ios: {
-      sound: true
-    },
-    android: {
-      sound: true,
-      priority: "high",
-      sticky: false,
-      vibrate: true
-    }
-  };
-}
+const newNotification = {
+  title: "Flash Cards",
+  body: "You have not even studied today.",
+  ios: {
+    sound: true
+  },
+  android: {
+    sound: true,
+    priority: "high",
+    sticky: false,
+    vibrate: true
+  }
+};
 
 export function setLocalNotification() {
   AsyncStorage.getItem(NOT_KEY)
@@ -117,7 +102,7 @@ export function setLocalNotification() {
             tomorrow.setHours(10);
             tomorrow.setMinutes(0);
 
-            Notifications.scheduleLocalNotificationAsync(createNotification(), {
+            Notifications.scheduleLocalNotificationAsync(newNotification, {
               time: tomorrow,
               repeat: "day"
             });

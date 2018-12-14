@@ -11,13 +11,12 @@ export default class Results extends Component {
           <View style={styles.viewProgressBar}>
             <View style={styles.prgBack}>
               <View
-                style={{
-                  width: `${(hit / tot) * 100}%`,
-                  height: 50,
-                  backgroundColor: "#32CD32",
-                  borderRadius: 5,
-                  position: "absolute"
-                }}
+                style={[
+                  styles.viewResult,
+                  {
+                    width: `${(hit / tot) * 100}%`
+                  }
+                ]}
               />
               <Text style={styles.txtBtn}>
                 {"Result: " + hit + " of " + tot}
@@ -57,6 +56,12 @@ const styles = StyleSheet.create({
   viewProgressBar: {
     flexDirection: "row",
     height: 50
+  },
+  viewResult: {
+    height: 50,
+    backgroundColor: "#32CD32",
+    borderRadius: 5,
+    position: "absolute"
   },
   txtBtn: {
     fontSize: 27,

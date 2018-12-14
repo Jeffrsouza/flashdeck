@@ -1,26 +1,10 @@
-/*View do quiz*/
-
-// exibe a pergunta do cartão
-// uma opção de visualizar a resposta (virar o cartão) clicando em Answer
-// um botão "Correto" para o usuário clicar caso ele tenha acertado a questão de acordo com a resposta que tinha em mente
-// um botão "Incorreto" para o usuário clicar caso ele tenha errado a questão de acordo com a resposta que tinha em mente
-// o número de cartões que faltam para terminar o quiz
-// exibe a porcentagem correta assim que o quiz é completado
-
-import React, { Component } from "react";
-import {
-  AsyncStorage,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
-import { Header, Left, Icon, Body, Title, Right } from "native-base";
+import React, { PureComponent } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Header, Left, Icon, Body, Title } from "native-base";
 import { getDeck } from "../functions";
 import { Actions } from "react-native-router-flux";
 
-export default class Quiz extends Component {
+export default class Quiz extends PureComponent {
   state = {
     hit: 0,
     pageAnswer: false,

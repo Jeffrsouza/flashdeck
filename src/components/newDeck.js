@@ -1,13 +1,5 @@
-/*View do novo baralho*/
-
-// Uma opção de inserir o título do novo baralho
-// Uma opção de enviar o novo título do baralho e assim criar o baralho
 import React, { Component } from "react";
 import {
-  AsyncStorage,
-  Container,
-  Content,
-  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -15,16 +7,7 @@ import {
   View
 } from "react-native";
 import { Actions } from "react-native-router-flux";
-import {
-  Header,
-  Left,
-  Item,
-  Input,
-  Icon,
-  Body,
-  Title,
-  Right
-} from "native-base";
+import { Item, Input, Title } from "native-base";
 
 export default class NewDeck extends Component {
   state = {

@@ -1,13 +1,5 @@
-/*View de um baralho individual*/
-
-// exibe o título do baralho
-// exibe o número de cartões em um baralho
-// exibe uma opção para começar um quiz no baralho
-// uma opção de adicionar uma nova pergunta ao baralho
 import React, { Component } from "react";
 import {
-  AsyncStorage,
-  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -15,7 +7,7 @@ import {
   Animated,
   Image
 } from "react-native";
-import { Header, Left, Icon, Body, Right } from "native-base";
+import { Header, Left, Icon, Body } from "native-base";
 import { getDeck } from "../functions";
 import { Actions } from "react-native-router-flux";
 
